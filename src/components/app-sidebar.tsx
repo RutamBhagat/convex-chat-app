@@ -17,7 +17,7 @@ export function AppSidebar() {
   return (
     <Sidebar>
       {/* Sidebar Header */}
-      <SidebarHeader className="p-4 border-b border-sidebar-border">
+      <SidebarHeader className="p-4 border-sidebar-border">
         <div className="flex items-center justify-center gap-2 mb-4">
           <p className="text-sidebar-foreground font-semibold text-xl text-center">T3.chat</p>
         </div>
@@ -31,24 +31,24 @@ export function AppSidebar() {
 
       {/* Sidebar Content */}
       <SidebarContent>
-        <SidebarGroup className="p-4">
+        <SidebarGroup className="p-4 py-0">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-sidebar-foreground/60" />
             <SidebarInput
               placeholder="Search your threads..."
-              className="pl-10 bg-sidebar-muted border border-sidebar-border text-sidebar-foreground placeholder:text-sidebar-foreground/60 rounded-md"
+              className="pl-10 !bg-transparent border-0 border-b border-sidebar-foreground/20 rounded-none text-sidebar-foreground placeholder:text-sidebar-foreground/60 focus:border-sidebar-foreground/40 focus:outline-none"
             />
           </div>
         </SidebarGroup>
 
         {/* Chat threads */}
         <SidebarGroup>
-          <SidebarGroupLabel className="px-4 text-xs text-sidebar-foreground/60">
+          <SidebarGroupLabel className="px-4 text-xs text-sidebar-foreground">
             Today
           </SidebarGroupLabel>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton className="px-4 text-sidebar-foreground bg-sidebar-accent hover:bg-sidebar-accent/80">
+              <SidebarMenuButton className="px-4 text-sidebar-foreground hover:bg-sidebar-accent/80">
                 Greeting Title
               </SidebarMenuButton>
             </SidebarMenuItem>

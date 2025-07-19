@@ -6,9 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Send, Search, Sparkles, Code, Book, ChevronDown, Sun } from "lucide-react";
+import { Send, Search, Sparkles, Code, Book, ChevronDown } from "lucide-react";
 import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import { ModeToggle } from "@/components/mode-toggle";
 
 function getOrSetFakeName() {
   const NAME_KEY = "tutorial_name";
@@ -43,9 +44,7 @@ export default function App() {
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 px-4 border-b">
           <div className="ml-auto">
-            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-              <Sun className="h-4 w-4" />
-            </Button>
+            <ModeToggle />
           </div>
         </header>
 
