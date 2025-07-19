@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__shadcn-ui__list_components",
+      "mcp__shadcn-ui__get_component",
+      "Bash(npm install:*)"
+    ],
+    "deny": []
+  }
+}
