@@ -5,7 +5,11 @@
       "mcp__shadcn-ui__get_component",
       "Bash(npm install:*)",
       "mcp__fetch__fetch",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_take_screenshot",
+      "Bash(curl:*)",
+      "mcp__playwright__browser_tab_new"
     ],
     "deny": []
   }
