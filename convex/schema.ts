@@ -5,12 +5,10 @@ export default defineSchema({
   messages: defineTable({
     user: v.string(),
     body: v.string(),
-  })
-    .index("by_user", ["user"]),
+  }).index("by_user", ["user"]),
 
   events: defineTable({
     user: v.string(),
     message: v.string(),
-  })
-    .index("by_user", ["user"]),
+  }).index("by_user", ["user"]),
 });

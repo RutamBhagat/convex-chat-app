@@ -31,9 +31,15 @@ export const sendMessage = mutation({
 });
 
 export const getMessages = query({
-  args: {},
-  handler: async (ctx) => {
-    const messages = await ctx.db.query("messages").order("desc").take(50);
+  args: { nameFilter: v.string() },
+  handler: async (ctx, args) => {
+    const messages = args.nameFilter
+      ? await ctx.db
+          .query("messages")
+          .withIndex("by_user", (q) => q.eq("user", args.nameFilter))
+          .order("desc")
+          .take(50)
+      : await ctx.db.query("messages").order("desc").take(50);
     return messages.reverse();
   },
 });
@@ -58,13 +64,13 @@ function getSummaryFromJSON(data: any) {
   if (!data.query || !data.query.pages) {
     return null;
   }
-  
+
   const firstPageId = Object.keys(data.query.pages)[0];
   const page = data.query.pages[firstPageId];
-  
+
   if (page.missing || !page.extract) {
     return null;
   }
-  
+
   return page.extract;
 }

@@ -6,7 +6,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUp, Search, Sparkles, Code, Book, ChevronDown } from "lucide-react";
+import {
+  ArrowUp,
+  Search,
+  Sparkles,
+  Code,
+  Book,
+  ChevronDown,
+} from "lucide-react";
 import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ModeToggle } from "@/components/mode-toggle";
@@ -25,22 +32,23 @@ function getOrSetFakeName() {
 const NAME = getOrSetFakeName();
 
 export default function App() {
+  const [nameFilter, setNameFilter] = useState("");
+
   const sendMessage = useMutation(api.chat.sendMessage);
-  const messages = useQuery(api.chat.getMessages);
+  const messages = useQuery(api.chat.getMessages, { nameFilter });
   const [newMessageText, setNewMessageText] = useState("");
 
   useEffect(() => {
     setTimeout(() => {
-      const messagesEnd = document.getElementById('messages-end');
+      const messagesEnd = document.getElementById("messages-end");
       messagesEnd?.scrollIntoView({ behavior: "smooth" });
     }, 0);
   }, [messages]);
 
-
   return (
     <>
       <SidebarTrigger className="fixed top-4 left-4 z-50" />
-      <AppSidebar />
+      <AppSidebar nameFilter={nameFilter} setNameFilter={setNameFilter} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 px-4 border-b">
           <div className="ml-auto">
