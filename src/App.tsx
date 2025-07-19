@@ -78,11 +78,6 @@ export default function App() {
                         <span className="text-xs font-medium text-muted-foreground">
                           {message.user}
                         </span>
-                        {isOwn && (
-                          <Badge variant="secondary" className="text-xs">
-                            You
-                          </Badge>
-                        )}
                       </div>
 
                       <div
