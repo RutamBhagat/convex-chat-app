@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Send, Search, Sparkles, Code, Book, ChevronDown } from "lucide-react";
+import { ArrowUp, Search, Sparkles, Code, Book, ChevronDown } from "lucide-react";
 import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ModeToggle } from "@/components/mode-toggle";
@@ -50,84 +50,7 @@ export default function App() {
 
         {/* Main Chat Area */}
         <div className="flex-1 flex flex-col items-center justify-center p-8">
-          {messages?.length === 0 ? (
-            <div className="max-w-2xl w-full text-center">
-              <h1 className="text-4xl font-normal text-foreground mb-8">
-                How can I help you?
-              </h1>
-
-              {/* Suggestion Buttons */}
-              <div className="grid grid-cols-2 gap-3 mb-8">
-                <Button
-                  variant="outline"
-                  className="h-auto p-4 text-left border-border hover:bg-accent/50"
-                >
-                  <div className="flex items-start gap-3">
-                    <Sparkles className="h-5 w-5 mt-0.5 text-muted-foreground" />
-                    <div>
-                      <div className="font-medium text-foreground">Create</div>
-                      <div className="text-sm text-muted-foreground">
-                        Generate content
-                      </div>
-                    </div>
-                  </div>
-                </Button>
-
-                <Button
-                  variant="outline"
-                  className="h-auto p-4 text-left border-border hover:bg-accent/50"
-                >
-                  <div className="flex items-start gap-3">
-                    <Search className="h-5 w-5 mt-0.5 text-muted-foreground" />
-                    <div>
-                      <div className="font-medium text-foreground">Explore</div>
-                      <div className="text-sm text-muted-foreground">
-                        Find information
-                      </div>
-                    </div>
-                  </div>
-                </Button>
-
-                <Button
-                  variant="outline"
-                  className="h-auto p-4 text-left border-border hover:bg-accent/50"
-                >
-                  <div className="flex items-start gap-3">
-                    <Code className="h-5 w-5 mt-0.5 text-muted-foreground" />
-                    <div>
-                      <div className="font-medium text-foreground">Code</div>
-                      <div className="text-sm text-muted-foreground">
-                        Write and debug
-                      </div>
-                    </div>
-                  </div>
-                </Button>
-
-                <Button
-                  variant="outline"
-                  className="h-auto p-4 text-left border-border hover:bg-accent/50"
-                >
-                  <div className="flex items-start gap-3">
-                    <Book className="h-5 w-5 mt-0.5 text-muted-foreground" />
-                    <div>
-                      <div className="font-medium text-foreground">Learn</div>
-                      <div className="text-sm text-muted-foreground">
-                        Study and research
-                      </div>
-                    </div>
-                  </div>
-                </Button>
-              </div>
-
-              {/* Example Questions */}
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <div>How does AI work?</div>
-                <div>Are black holes real?</div>
-                <div>How many Rs are in the word "strawberry"?</div>
-                <div>What is the meaning of life?</div>
-              </div>
-            </div>
-          ) : (
+          {messages?.length !== 0 ? (
             <div className="max-w-4xl w-full flex-1 overflow-y-auto p-6 space-y-4">
               {messages?.map((message) => {
                 const isOwn = message.user === NAME;
@@ -179,19 +102,12 @@ export default function App() {
               })}
               <div id="messages-end" />
             </div>
-          )}
+          ) : null}
         </div>
 
         {/* Bottom Input Area */}
-        <div className="p-4 border-t border-border">
-          <div className="max-w-4xl mx-auto">
-            {/* Terms */}
-            <div className="text-center text-xs text-muted-foreground mb-4">
-              Make sure you agree to our{" "}
-              <span className="underline">Terms</span> and our{" "}
-              <span className="underline">Privacy Policy</span>
-            </div>
-
+        <div className="">
+          <div className="max-w-2xl mx-auto rounded-t-2xl p-2 pb-0 bg-secondary/20">
             {/* Input Form */}
             <form
               onSubmit={async (e) => {
@@ -205,7 +121,7 @@ export default function App() {
               }}
               className="relative"
             >
-              <div className="flex items-center bg-input border border-border rounded-3xl overflow-hidden">
+              <div className="flex flex-col p-2 items-center bg-input rounded-t-xl overflow-hidden">
                 <Input
                   value={newMessageText}
                   onChange={(e) => setNewMessageText(e.target.value)}
@@ -213,25 +129,14 @@ export default function App() {
                   className="flex-1 border-0 bg-transparent px-6 py-4 text-base focus-visible:ring-0"
                   autoFocus
                 />
-                <div className="flex items-center gap-2 px-4">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-8 px-3 text-xs"
-                  >
-                    <span>Gemini 2.5 Flash</span>
-                    <ChevronDown className="h-3 w-3 ml-1" />
-                  </Button>
-                  <Search className="h-4 w-4 text-muted-foreground" />
-                  <Button
-                    type="submit"
-                    disabled={!newMessageText.trim()}
-                    size="sm"
-                    className="h-8 w-8 p-0 rounded-full bg-primary hover:bg-primary/90 disabled:opacity-50"
-                  >
-                    <Send className="h-4 w-4" />
-                  </Button>
-                </div>
+                <Button
+                  type="submit"
+                  disabled={!newMessageText.trim()}
+                  size="sm"
+                  className="h-8 w-8 p-0 self-end rounded-md bg-primary hover:bg-primary/90 disabled:opacity-50"
+                >
+                  <ArrowUp className="h-4 w-4" />
+                </Button>
               </div>
             </form>
           </div>

@@ -1,4 +1,4 @@
-import { Search, User } from "lucide-react";
+import { Search, LogIn } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -23,7 +23,7 @@ export function AppSidebar() {
         </div>
 
         <Button
-          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+          className="w-full bg-primary/20 hover:bg-primary/50 text-primary-foreground"
         >
           New Chat
         </Button>
@@ -61,7 +61,7 @@ export function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent">
-              <User className="h-4 w-4 mr-2" />
+              <LogIn className="h-4 w-4 mr-2" />
               Login
             </SidebarMenuButton>
           </SidebarMenuItem>
