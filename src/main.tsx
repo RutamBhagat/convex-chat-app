@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 import { ThemeProvider } from "./components/theme-provider";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL);
 
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       disableTransitionOnChange
     >
       <ConvexProvider client={convex}>
-        <App />
+        <SidebarProvider>
+          <App />
+        </SidebarProvider>
       </ConvexProvider>
     </ThemeProvider>
   </StrictMode>,
