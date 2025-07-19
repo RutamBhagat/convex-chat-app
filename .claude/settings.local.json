@@ -3,7 +3,9 @@
     "allow": [
       "mcp__shadcn-ui__list_components",
       "mcp__shadcn-ui__get_component",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "mcp__fetch__fetch",
+      "Bash(npm run dev:*)"
     ],
     "deny": []
   }

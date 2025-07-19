@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Send, MessageCircle, Users } from "lucide-react";
+import { ModeToggle } from "@/components/mode-toggle";
 
 function getOrSetFakeName() {
   const NAME_KEY = "tutorial_name";
@@ -39,7 +40,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background p-4">
-      <div className="max-w-4xl mx-auto h-screen flex flex-col">
+      <div className="max-w-4xl mx-auto min-h-[calc(100vh-2rem)] flex flex-col">
         {/* Header */}
         <Card className="mb-4">
           <CardHeader className="pb-4">
@@ -70,6 +71,7 @@ export default function App() {
                   <div className="h-2 w-2 bg-accent rounded-full animate-pulse"></div>
                   <span className="text-xs text-accent-foreground font-medium">Online</span>
                 </div>
+                <ModeToggle />
               </div>
             </div>
           </CardHeader>
