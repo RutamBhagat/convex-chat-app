@@ -38,18 +38,18 @@ export default function App() {
   const messageCount = messages?.length || 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 p-4">
+    <div className="min-h-screen bg-background p-4">
       <div className="max-w-4xl mx-auto h-screen flex flex-col">
         {/* Header */}
-        <Card className="mb-4 bg-white/80 backdrop-blur-sm border-slate-200/50 dark:bg-slate-900/80 dark:border-slate-700/50">
+        <Card className="mb-4">
           <CardHeader className="pb-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg">
-                  <MessageCircle className="h-6 w-6 text-white" />
+                <div className="p-2 bg-primary rounded-lg">
+                  <MessageCircle className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <div>
-                  <CardTitle className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  <CardTitle className="text-xl font-bold text-foreground">
                     Convex Chat
                   </CardTitle>
                   <p className="text-sm text-muted-foreground mt-1">
@@ -67,8 +67,8 @@ export default function App() {
                   <span>{messageCount} messages</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-xs text-green-600 font-medium">Online</span>
+                  <div className="h-2 w-2 bg-accent rounded-full animate-pulse"></div>
+                  <span className="text-xs text-accent-foreground font-medium">Online</span>
                 </div>
               </div>
             </div>
@@ -76,12 +76,12 @@ export default function App() {
         </Card>
 
         {/* Messages Container */}
-        <Card className="flex-1 flex flex-col bg-white/80 backdrop-blur-sm border-slate-200/50 dark:bg-slate-900/80 dark:border-slate-700/50 overflow-hidden">
+        <Card className="flex-1 flex flex-col overflow-hidden">
           <CardContent className="flex-1 overflow-y-auto p-6 space-y-4">
             {messages?.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full text-center">
-                <div className="p-4 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-full mb-4">
-                  <MessageCircle className="h-12 w-12 text-blue-500" />
+                <div className="p-4 bg-muted rounded-full mb-4">
+                  <MessageCircle className="h-12 w-12 text-muted-foreground" />
                 </div>
                 <h3 className="text-lg font-semibold text-muted-foreground mb-2">No messages yet</h3>
                 <p className="text-sm text-muted-foreground">Start the conversation by sending a message below!</p>
@@ -96,8 +96,8 @@ export default function App() {
                     key={message._id}
                     className={`flex gap-3 ${isOwn ? 'flex-row-reverse' : 'flex-row'} animate-in slide-in-from-bottom-2 duration-300`}
                   >
-                    <Avatar className={`${isOwn ? 'bg-gradient-to-r from-blue-500 to-purple-600' : 'bg-gradient-to-r from-slate-500 to-slate-600'} shrink-0`}>
-                      <AvatarFallback className={`${isOwn ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white' : 'bg-gradient-to-r from-slate-500 to-slate-600 text-white'} text-xs font-semibold`}>
+                    <Avatar className="shrink-0">
+                      <AvatarFallback className={`${isOwn ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'} text-xs font-semibold`}>
                         {initials}
                       </AvatarFallback>
                     </Avatar>
@@ -110,8 +110,8 @@ export default function App() {
                       
                       <div className={`px-4 py-2 rounded-2xl max-w-full break-words ${
                         isOwn 
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-br-md' 
-                          : 'bg-slate-100 dark:bg-slate-800 text-foreground rounded-bl-md'
+                          ? 'bg-primary text-primary-foreground rounded-br-md' 
+                          : 'bg-muted text-muted-foreground rounded-bl-md'
                       } shadow-sm`}>
                         <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.body}</p>
                       </div>
@@ -125,7 +125,7 @@ export default function App() {
         </Card>
 
         {/* Input Form */}
-        <Card className="mt-4 bg-white/80 backdrop-blur-sm border-slate-200/50 dark:bg-slate-900/80 dark:border-slate-700/50">
+        <Card className="mt-4">
           <CardContent className="p-4">
             <form
               onSubmit={async (e) => {
@@ -143,13 +143,13 @@ export default function App() {
                 value={newMessageText}
                 onChange={(e) => setNewMessageText(e.target.value)}
                 placeholder="Type your message here..."
-                className="flex-1 h-12 text-base bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus-visible:ring-blue-500/20 focus-visible:border-blue-500"
+                className="flex-1 h-12 text-base"
                 autoFocus
               />
               <Button 
                 type="submit" 
                 disabled={!newMessageText.trim()}
-                className="h-12 px-6 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                className="h-12 px-6 font-medium shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
               >
                 <Send className="h-4 w-4 mr-2" />
                 Send
