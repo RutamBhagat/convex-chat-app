@@ -50,7 +50,7 @@ export default function App() {
     <>
       <SidebarTrigger className="fixed top-4 left-4 z-50" />
       <AppSidebar nameFilter={nameFilter} setNameFilter={setNameFilter} />
-      <SidebarInset>
+      <SidebarInset className="flex flex-col h-screen">
         <header className="flex h-16 shrink-0 items-center gap-2 px-4 border-b">
           <div className="ml-auto flex items-center gap-2">
             <ThemeSelector />
@@ -58,57 +58,59 @@ export default function App() {
           </div>
         </header>
 
-        {/* Main Chat Area */}
-        <div className="flex-1 flex flex-col items-center justify-center p-8">
-          {messages?.length !== 0 ? (
-            <div className="max-w-4xl w-full flex-1 overflow-y-auto p-6 space-y-4">
-              {messages?.map((message) => {
-                const isOwn = message.user === NAME;
-                const initials = message.user.substring(0, 2).toUpperCase();
+        <main className="flex-1 overflow-y-auto">
+          {/* Main Chat Area */}
+          <div className="flex flex-col items-center justify-center p-8">
+            {messages?.length !== 0 ? (
+              <div className="max-w-4xl w-full flex-1 p-6 space-y-4">
+                {messages?.map((message) => {
+                  const isOwn = message.user === NAME;
+                  const initials = message.user.substring(0, 2).toUpperCase();
 
-                return (
-                  <div
-                    key={message._id}
-                    className={`flex gap-3 ${isOwn ? "flex-row-reverse" : "flex-row"} animate-in slide-in-from-bottom-2 duration-300`}
-                  >
-                    <Avatar className="shrink-0">
-                      <AvatarFallback
-                        className={`${isOwn ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground"} text-xs font-semibold`}
-                      >
-                        {initials}
-                      </AvatarFallback>
-                    </Avatar>
-
+                  return (
                     <div
-                      className={`flex flex-col max-w-[70%] ${isOwn ? "items-end" : "items-start"}`}
+                      key={message._id}
+                      className={`flex gap-3 ${isOwn ? "flex-row-reverse" : "flex-row"} animate-in slide-in-from-bottom-2 duration-300`}
                     >
-                      <div
-                        className={`flex items-center gap-2 mb-1 ${isOwn ? "flex-row-reverse" : "flex-row"}`}
-                      >
-                        <span className="text-xs font-medium text-muted-foreground">
-                          {message.user}
-                        </span>
-                      </div>
+                      <Avatar className="shrink-0">
+                        <AvatarFallback
+                          className={`${isOwn ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground"} text-xs font-semibold`}
+                        >
+                          {initials}
+                        </AvatarFallback>
+                      </Avatar>
 
                       <div
-                        className={`px-4 py-2 rounded-2xl max-w-full break-words ${
-                          isOwn
-                            ? "bg-primary text-primary-foreground rounded-br-md"
-                            : "bg-muted text-muted-foreground rounded-bl-md"
-                        } shadow-sm`}
+                        className={`flex flex-col max-w-[70%] ${isOwn ? "items-end" : "items-start"}`}
                       >
-                        <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                          {message.body}
-                        </p>
+                        <div
+                          className={`flex items-center gap-2 mb-1 ${isOwn ? "flex-row-reverse" : "flex-row"}`}
+                        >
+                          <span className="text-xs font-medium text-muted-foreground">
+                            {message.user}
+                          </span>
+                        </div>
+
+                        <div
+                          className={`px-4 py-2 rounded-2xl max-w-full break-words ${
+                            isOwn
+                              ? "bg-primary text-primary-foreground rounded-br-md"
+                              : "bg-muted text-muted-foreground rounded-bl-md"
+                          } shadow-sm`}
+                        >
+                          <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                            {message.body}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
-              <div id="messages-end" />
-            </div>
-          ) : null}
-        </div>
+                  );
+                })}
+                <div id="messages-end" />
+              </div>
+            ) : null}
+          </div>
+        </main>
 
         {/* Bottom Input Area */}
         <div className="">
